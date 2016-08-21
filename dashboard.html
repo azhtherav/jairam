@@ -1,0 +1,84 @@
+﻿<div >
+    <div layout="row" ng-class="{'loader-display' : loader}" layout-align="space-around" style="margin-top:80px;">
+        <md-progress-circular md-mode="indeterminate" md-diameter="40"></md-progress-circular>
+    </div>
+    <div layout="row" layout-sm="column" ng-class="{'loader-display' : !loader}">
+        <div flex>
+
+            <label style="background-color: #D32F2F; color:#FFF; text-transform:uppercase; margin-top: 10px; padding: 8px;">All Open Commision Report</label>
+            <hr style=" margin-bottom:20px; color:#ff0000;" />
+            <div style="height: 200px; overflow: auto;">
+
+                <table wt-responsive-table border="1">
+                    <tr>
+                        <th class="padd">Lorry No</th>
+                        <th class="padd">Loading Date</th>
+                    </tr>
+                    <tr ng-repeat="ddd in allopencommissionList">
+                        <td class="padd" ng-click="gotonextpage(ddd.commissionid)">{{ddd.lorryno}}</td>
+                        <td class="padd">{{ddd.loadingdate}}</td>
+                    </tr>
+
+                </table>
+
+            </div>
+            
+            <label style="background-color: #D32F2F; color:#FFF; text-transform:uppercase; margin-top: 10px; padding: 8px;">Amount Sent Date Report</label>
+            <hr style=" margin-bottom:20px; color:#ff0000;" />
+            <div style="height: 200px; overflow: auto;">
+
+                <table wt-responsive-table border="1">
+                    <tr>
+                        <th class="padd">Lorry No</th>
+                        <th class="padd">Loading Date</th>
+                    </tr>
+                    <tr ng-repeat="ddd in balancereceiveddatecommitionList">
+                        <td class="padd" ng-click="gotonextpage(ddd.commissionid)">{{ddd.lorryno}}</td>
+                        <td class="padd">{{ddd.loadingdate}}</td>
+                    </tr>
+
+                </table>
+
+            </div>
+            
+        </div>
+        <div flex>
+            
+            <label style="background-color: #D32F2F; color:#FFF; text-transform:uppercase; margin-top: 10px; padding: 8px;">Acknowledgement Report</label>
+            <hr style=" margin-bottom:20px; color:#ff0000;" />
+            <div style="height: 200px; overflow: auto;">
+
+                <table wt-responsive-table border="1">
+                    <tr>
+                        <th class="padd">Lorry No</th>
+                        <th class="padd">Loading Date</th>
+                    </tr>
+                    <tr ng-repeat="ddd in ackcommitionList">
+                        <td class="padd" ng-click="gotonextpage(ddd.commissionid)">{{ddd.lorryno}}</td>
+                        <td class="padd">{{ddd.loadingdate}}</td>
+                    </tr>
+
+                </table>
+
+            </div>
+            
+            <label style="background-color: #D32F2F; color:#FFF; text-transform:uppercase; margin-top: 10px; padding: 8px;">Balance Error Check Report</label>
+            <hr style=" margin-bottom:20px; color:#ff0000;" />
+            <div style="height: 200px; overflow: auto;">
+
+                <table wt-responsive-table border="1">
+                    <tr>
+                        <th class="padd">Lorry No</th>
+                        <th class="padd">Loading Date</th>
+                    </tr>
+                    <tr ng-repeat="dd in balanceerrorcommitionList">
+                        <td class="padd" ng-click="gotonextpage(dd.commissionid)">{{dd.lorryno}}</td>
+                        <td class="padd">{{dd.loadingdate}}</td>
+                    </tr>
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

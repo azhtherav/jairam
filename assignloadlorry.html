@@ -1,0 +1,208 @@
+﻿<div >
+    <!--<div layout="row" layout-sm="column">
+        <div flex>
+            <div style="margin-top:0;">
+                <label style="background-color: #D32F2F; color:#FFF; text-transform:uppercase; margin-top: 10px; padding: 8px;">Lorry</label>
+            </div>
+            <hr style="color:#ff0000;" />
+            <form name="lorryForm" novalidate>
+                <div class="form-group form-data">
+                    <div class="input-lable"><i class="fa fa-truck"></i> Lorry no * </div>
+                    <input ng-model="lorry.lorryno"
+                           name="lorryno"
+                           type="text"
+                           class="input-content"
+                           placeholder="Lorry Number" />
+                </div>
+                <div class="form-group form-data">
+                    <div class="input-lable"><i class="fa fa-phone-square"></i> contact no * <span class="sub-input-lable">( phone no )</span></div>
+                    <input ng-model="lorry.ophone"
+                           name="ophoneno"
+                           type="text"
+                           class="input-content"
+                           placeholder="contact number"
+                           ng-maxlength="10"
+                           ng-minlength="10"
+                           ng-pattern="/^(\d)+$/" />
+                    <p class="validation" ng-show="lorryForm.ophoneno.$error.minlength">Phone Number wrong.</p>
+                    <p class="validation" ng-show="lorryForm.ophoneno.$error.maxlength">Phone Number wrong.</p>
+                    <p class="validation" ng-show="lorryForm.ophoneno.$error.pattern">Enter number only number.</p>
+                </div>
+                <div class="form-group form-data">
+                    <div class="input-lable"><i class="fa fa-plane"></i> destination * <span class="sub-input-lable">( to )</span></div>
+                    <input id="designation" ng-model="lorry.designation"
+                           name="designation"
+                           type="text"
+                           googleplace
+                           class="input-content"
+                           placeholder="destination"
+                           required />
+                </div>
+            </form>
+        </div>
+        <div flex>
+            <div style="margin-top:0;">
+                <label style="background-color: #D32F2F; color:#FFF; text-transform:uppercase; margin-top: 10px; padding: 8px;">Load</label>
+            </div>
+            <hr style="color:#ff0000;" />
+            <form name="lorryloadForm" novalidate>
+                <div class="form-group form-data">
+                    <div class="input-lable"><i class="fa fa-truck"></i> load name * </div>
+                    <input ng-model="lorryload.loadname"
+                           name="loadname"
+                           type="text"
+                           class="input-content"
+                           placeholder="load name" />
+                    <p class="validation" ng-show="lorryloadForm.loadname.$invalid && !lorryloadForm.loadname.$pristine">Lorry number is required.</p>
+                </div>
+                <div class="form-group form-data">
+                    <div class="input-lable" ng-model="transport.tranporterid"><i class="fa fa-truck"></i> transporter name * {{transport.tranporterid}} </div>
+                    <input ng-model="transport.transportername"
+                           name="transportername"
+                           type="text"
+                           class="input-content"
+                           placeholder="transporter name" />
+                </div>
+                <div class="form-group form-data">
+                    <div class="input-lable"><i class="fa fa-phone-square"></i> transporter no * <span class="sub-input-lable">( phone no )</span></div>
+                    <input ng-model="transport.transporterphone"
+                           name="transporterphone"
+                           type="text"
+                           class="input-content"
+                           placeholder="transporter number"
+                           ng-maxlength="10"
+                           ng-minlength="10"
+                           ng-pattern="/^(\d)+$/" />
+                    <p class="validation" ng-show="lorryloadForm.transporterphone.$error.minlength">Phone Number wrong.</p>
+                    <p class="validation" ng-show="lorryloadForm.transporterphone.$error.maxlength">Phone Number wrong.</p>
+                    <p class="validation" ng-show="lorryloadForm.transporterphone.$error.pattern">Enter number only number.</p>
+                </div>
+                <div class="form-group form-data">
+                    <div class="input-lable"><i class="fa fa-plane"></i> destination * (to)</div>
+                    <input ng-model="lorryload.lto"
+                           name="designation"
+                           type="text"
+                           googleplace
+                           class="input-content"
+                           placeholder="destination" />
+                </div>
+            </form>
+        </div>
+    </div>-->
+    <div layout="row">
+        <md-button flex ng-disabled="!lorryselected || !loadselected" class="md-accent form-btn md-primary assign-btn" ng-click="addAssign()">Load Register</md-button>
+    </div>
+    <div layout="row" layout-sm="column">
+        <div flex>
+            <div>
+                <md-button ng-show="lorryselected" class="md-accent form-btn md-primary" ng-click="removeLorry()">Remove</md-button>
+                <md-button ng-show="!lorryselected" class="md-accent form-btn md-primary select-btn">select</md-button>
+            </div>
+            <div ng-show="lorryselected" style="padding: 20px; background-color: #f5f5f5;">veh.no. - {{lorryno}}, contact no. - {{lorrycontact}}</div>
+        </div>
+        <div flex>
+            <div>
+                <md-button ng-show="loadselected" class="md-accent form-btn md-primary" ng-click="removeLoad()">Remove</md-button>
+                <md-button ng-show="!loadselected" class="md-accent form-btn md-primary select-btn">select</md-button>
+            </div>
+            <div ng-show="loadselected" style="padding:20px; background-color:#f5f5f5;">load - {{loadname}}, transporter no. - {{transpoternumber}}</div>
+        </div>
+    </div>
+    <div layout="row" ng-class="{'loader-display' : loader}" layout-align="space-around" style="margin-top:80px;">
+        <md-progress-circular md-mode="indeterminate" md-diameter="40"></md-progress-circular>
+    </div>
+    <div layout="row" layout-sm="column">
+        <div flex>
+            <div style="height:70vh; overflow:auto;">
+                <div layout="column" ng-show="!lorryselected" class="detail-column" flex-sm="100" flex-gt-sm="100" flex-md="100" flex-gt-md="501" flex-lg="50" flex-gt-lg="50" ng-repeat="ddd in listingData | filter:{lorryno: lorry.lorryno, ophone: lorry.ophone, lorrytype: lorry.lorrytype, designation: lorry.designation, status: 'empty'}">
+                    <div ng-click="selectLorryAssign(ddd)" class="lorry-continer">
+                        <div>
+                            <div class="heading">Vechicle Number</div>
+                            <div class="detail-data"> - {{ddd.lorryno}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">type</div>
+                            <div class="detail-data"> - {{ddd.lorrytype}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">Phone</div>
+                            <div class="detail-data"> - {{ddd.ophone}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">contact name</div>
+                            <div class="detail-data"> - {{ddd.contactname}}</div>
+                        </div>
+                        <!--<div>
+                            <div class="heading">current city</div>
+                            <div class="detail-data"> - {{ddd.currentcity}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">destination</div>
+                            <div class="detail-data"> - {{ddd.designation}}</div>
+                        </div>-->
+                        <div>
+                            <div class="heading">name board</div>
+                            <div class="detail-data"> - {{ddd.nameboard}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">Acc. no.</div>
+                            <div class="detail-data"> - {{ddd.accountno}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">pancard no.</div>
+                            <div class="detail-data"> - {{ddd.pancard}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">status</div>
+                            <div class="detail-data"> - {{ddd.status}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div flex>
+            <div style="height:70vh; overflow:auto;">
+                <div layout="column" ng-show="!loadselected" class="detail-column" flex-sm="100" flex-gt-sm="100" flex-md="100" flex-gt-md="501" flex-lg="50" flex-gt-lg="50" ng-repeat="ddd in lload | filter:{transportername: transport.transportername, loadname:lorryload.loadname, transporterphone:transport.transporterphone,lto:lorryload.lto, loadstatus: 'new'}">
+                    <div ng-click="selectLoadAssign(ddd)" class="lorry-continer">
+                        <div>
+                            <div class="heading">load name</div>
+                            <div class="detail-data"> - {{ddd.loadname}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">from</div>
+                            <div class="detail-data"> - {{ddd.lfrom}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">to</div>
+                            <div class="detail-data"> - {{ddd.lto}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">truck type</div>
+                            <div class="detail-data"> - {{ddd.trucktype}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">fright</div>
+                            <div class="detail-data"> - {{ddd.fright}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">vehicle fright</div>
+                            <div class="detail-data"> - {{ddd.vfright}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">transporter name</div>
+                            <div class="detail-data"> - {{ddd.transportername}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">transporter number</div>
+                            <div class="detail-data"> - {{ddd.transporterphone}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">status</div>
+                            <div class="detail-data"> - {{ddd.loadstatus}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

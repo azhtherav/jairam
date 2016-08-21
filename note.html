@@ -1,0 +1,26 @@
+﻿<div>
+    <div layout="row" ng-class="{'loader-display' : loader}" layout-align="space-around" style="margin-top:80px;">
+        <md-progress-circular md-mode="indeterminate" md-diameter="40"></md-progress-circular>
+    </div>
+    <div class="row" layout="row" layout-md="column" layout-sm="column" ng-class="{'loader-display' : !loader}">
+        <div flex class="col-lg-6">
+            <div class="form-group form-data">
+                <div class="input-lable">note </div>
+                <textarea draggable="false" class="input-content" style="resize:none;" cols="50" rows="10" placeholder="Notes" />
+                <md-button  class="md-accent form-btn md-primary" >submit</md-button>
+            </div>
+        </div>
+        <div flex class="col-lg-6">
+            <div class="form-group form-data">
+                <div class="input-lable">Date </div>
+                <input type="date"
+                       class="input-content" />
+                <md-button class="md-accent form-btn md-primary">search</md-button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" layout="row" layout-md="column" layout-sm="column" ng-class="{'loader-display' : !loader}">
+       
+    </div>
+</div>

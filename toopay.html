@@ -1,0 +1,209 @@
+﻿
+<div ng-init="showack()">
+    <div layout="row" ng-class="{'loader-display' : loader}" layout-align="space-around" style="margin-top:80px;">
+        <md-progress-circular md-mode="indeterminate" md-diameter="40"></md-progress-circular>
+    </div>
+    <div layout="row" layout-sm="column" ng-class="{'loader-display' : !loader}">
+        <div flex>
+
+            <div style="height:80vh; overflow:auto;">
+                <div layout="column" class="detail-column" flex-sm="100" flex-gt-sm="100" flex-md="100" flex-gt-md="50" flex-lg="50" flex-gt-lg="50" ng-repeat="ddd in ackallopen | filter:{lorryno: commition.lorryno, commitionstatus: 'open'}">
+                    <div ng-click="selectAck(ddd)" class="lorry-continer">
+                        <div>
+                            <div class="heading">lorry no.</div>
+                            <div class="detail-data"> - {{ddd.lorryno}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">from</div>
+                            <div class="detail-data"> - {{ddd.lfrom}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">to</div>
+                            <div class="detail-data"> - {{ddd.lto}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">truck type</div>
+                            <div class="detail-data"> - {{ddd.trucktype}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">fright</div>
+                            <div class="detail-data"> - {{ddd.fright}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">vehicle fright</div>
+                            <div class="detail-data"> - {{ddd.vfright}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">transporter name</div>
+                            <div class="detail-data"> - {{ddd.transportername}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">transporter number</div>
+                            <div class="detail-data"> - {{ddd.transporterphone}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">lorry no.</div>
+                            <div class="detail-data"> - {{ddd.loadname}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">lorry type.</div>
+                            <div class="detail-data"> - {{ddd.lorrytype}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">lorry contact no.</div>
+                            <div class="detail-data"> - {{ddd.ophone}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">lorry name board</div>
+                            <div class="detail-data"> - {{ddd.nameboard}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">status</div>
+                            <div class="detail-data"> - {{ddd.loadstatus}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+        <div flex>
+
+            <div style="margin-left:10px;">
+                <form name="lorryForm" novalidate>
+                    <div class="form-group form-data">
+                        <div class="input-lable">
+                            <i class="fa fa-truck"></i> Lorry no *{{ackCommission.lorryno}}
+                        </div>
+                        <input ng-model="ackCommission.lorryno"
+                               name="lorryno"
+                               type="text"
+                               class="input-content"
+                               placeholder="Lorry Number"
+                               required />
+                        <p class="validation" ng-show="lorryForm.lorryno.$invalid && !lorryForm.lorryno.$pristine">Lorry number is required.</p>
+                    </div>
+
+                    <div class="form-group form-data">
+                        <div class="input-lable">loading date</div>
+                        <input type="text" ng-model="ackCommission.loadingdate" jqdatepicker class="input-content" placeholder="loading date"/>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-lable">
+                            <i class="fa fa-user"></i> name board
+                        </div>
+                        <input ng-model="ackCommission.nameboard"
+                               type="text"
+                               class="input-content"
+                               placeholder="Name Board"
+                               required />
+                    </div>
+                    <div style="margin-top:20px;">
+                        <div class="form-group form-data">
+                            <div class="input-lable">
+                                <i class="fa fa-location-arrow"></i> from *
+                            </div>
+                            <input ng-model="ackCommission.lfrom"
+                                   name="currentcity"
+                                   type="text"
+                                   googleplace
+                                   class="input-content"
+                                   placeholder="from city"
+                                   required />
+                        </div>
+                        <div class="form-group form-data">
+                            <div class="input-lable">
+                                <i class="fa fa-plane"></i> destination * (to)
+                            </div>
+                            <input ng-model="ackCommission.lto"
+                                   name="designation"
+                                   type="text"
+                                   googleplace
+                                   class="input-content"
+                                   placeholder="destination"
+                                   required />
+                        </div>
+                    </div>
+                    <div class="form-group form-data">
+                        <div class="input-lable">fright *</div>
+                        <input ng-model="ackCommission.fright"
+                               type="number"
+                               class="input-content"
+                               placeholder="fright"
+                               required />
+                    </div>
+                    <div class="form-group form-data">
+                        <div class="input-lable">vehicle fright *</div>
+                        <input ng-model="ackCommission.vfright"
+                               type="number"
+                               class="input-content"
+                               placeholder="vehicle fright"
+                               required />
+                    </div>
+                    <div class="form-group form-data">
+                        <div class="input-lable">commission persent* </div>
+                        <input ng-model="ackCommission.commitionpercent"
+                               type="number"
+                               class="input-content"
+                               placeholder="commission percent"
+                               required />
+                    </div>
+
+                    <div class="form-group form-data">
+                        <div class="input-lable">commission*</div>
+                        <input ng-model="ackCommission.commition =((ackCommission.vfright / 100) * ackCommission.commitionpercent)"
+                               type="number"
+                               class="input-content"
+                               placeholder="commision"
+                               required />
+                    </div>
+
+                    <div class="form-group form-data">
+                        <div class="input-lable">advance*</div>
+                        <input ng-model="ackCommission.advance"
+                               type="number"
+                               class="input-content"
+                               placeholder="advance"
+                               required />
+                    </div>
+
+                    <div class="form-group form-data">
+                        <div class="input-lable">balance </div>
+                        <input ng-model="ackCommission.balance = ackCommission.vfright - ackCommission.advance"
+                               type="number"
+                               class="input-content"
+                               placeholder="balance"
+                               value="{{ackCommission.vfright - ackCommission.advance}}"
+                               required />
+                    </div>
+
+                    <div class="form-group form-data">
+                        <div class="input-lable">commission balance* </div>
+                        <input ng-model="ackCommission.commitionbalance = ackCommission.commition - ackCommission.topay"
+                               type="number"
+                               class="input-content"
+                               placeholder="commission balance"
+                               required />
+                    </div>
+
+                    <div class="form-group form-data">
+                        <div class="input-lable">commission paid </div>
+                        <input ng-model="ackCommission.topay"
+                               type="number"
+                               class="input-content"
+                               placeholder="commision paid"
+                               required />
+                    </div>
+                    
+                    
+                    <md-button flex ng-click="editTooPayCommision(ackCommission)" class="md-accent form-btn md-primary" ng-disabled="lorryForm.$invalid"><i class="fa fa-plus-square"></i> Submit</md-button>
+
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>

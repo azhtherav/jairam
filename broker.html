@@ -1,0 +1,89 @@
+﻿<div >
+    <div layout="row" ng-class="{'loader-display' : loader}" layout-align="space-around" style="margin-top:80px;">
+        <md-progress-circular md-mode="indeterminate" md-diameter="40"></md-progress-circular>
+    </div>
+    <div layout="row" layout-sm="column" ng-class="{'loader-display' : !loader}">
+        <div flex>
+            <form name="brokerForm" novalidate style="margin-bottom:10px;">
+                <div class="form-group form-data">
+                    <div class="input-lable" ng-model="broker.brokerid"><i class="fa fa-truck"></i> broker name * {{broker.brokerid}} </div>
+                    <input ng-model="broker.brokername"
+                           name="brokername"
+                           type="text"
+                           class="input-content"
+                           placeholder="broker name"
+                           required />
+                    <p class="validation" ng-show="brokerForm.brokername.$invalid && !brokerForm.brokername.$pristine">Broker Name is required.</p>
+                </div>
+                <div class="form-group form-data">
+                    <div class="input-lable"><i class="fa fa-phone-square"></i> broker no * <span class="sub-input-lable">( phone no )</span></div>
+                    <input ng-model="broker.phone"
+                           name="brokerphone"
+                           type="text"
+                           class="input-content"
+                           placeholder="broker number"
+                           ng-pattern="/^(\d{10}/)*\d{10}$/"
+                           required />
+                    <p class="validation" ng-show="brokerForm.brokerphone.$error.pattern">Enter number only number.</p>
+                </div>
+                <div class="form-group form-data">
+                    <div class="input-lable"><i class="fa fa-location-arrow"></i> area *</div>
+                    <input ng-model="broker.address"
+                           name="area"
+                           type="text"
+                           googleplace
+                           class="input-content"
+                           placeholder="area"
+                           />
+                </div>
+                <div class="form-group form-data">
+                    <div class="input-lable"><i class="fa fa-phone-square"></i> landline *</div>
+                    <input ng-model="broker.landline"
+                           name="landline"
+                           type="text"
+                           class="input-content"
+                           placeholder="landline no" />
+                </div>
+                
+                <div layout="row">
+                    <md-button flex ng-click="addbroker()" class="md-accent form-btn md-primary" ng-disabled="brokerForm.$invalid"><i class="fa fa-plus-square"></i> add broker</md-button>
+                    <md-button flex class="md-accent form-btn md-primary" ng-click="editbroker()" ng-disabled="editenable"><i class="fa fa-pencil fa-fw"></i> Edit</md-button>
+                </div>
+                <div layout="row">
+                    <md-button flex class="md-accent form-btn md-primary" ng-click="deletebroker()" ng-disabled="deleteenable">delete</md-button>
+                    <md-button flex type="rest" class="md-accent form-btn md-primary" ng-click="resetForm()">clear</md-button>
+                </div>
+            </form>
+            
+        </div>
+        <div flex style="height:90vh; overflow-y:auto;">
+            <div style="margin-top:0;">
+                <label style="background-color: #D32F2F; color:#FFF; text-transform:uppercase; margin-top: 10px; padding: 8px;">Broker Detail</label>
+            </div>
+            <hr style="color:#ff0000;" />
+            <div style="height:30%; overflow:auto;">
+                <div layout="column" class="detail-column" flex-sm="100" flex-gt-sm="100" flex-md="100" flex-gt-md="501" flex-lg="50" flex-gt-lg="50" ng-repeat="ddd in bro | filter:{brokername: broker.brokername, phone: broker.phone}">
+                    <div ng-click="selectBroker(ddd)" class="lorry-continer">
+                        <div>
+                            <div class="heading">broker name</div>
+                            <div class="detail-data"> - {{ddd.brokername}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">phone</div>
+                            <div class="detail-data"> - {{ddd.phone}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">landline no</div>
+                            <div class="detail-data"> - {{ddd.landline}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">area</div>
+                            <div class="detail-data"> - {{ddd.address}}</div>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

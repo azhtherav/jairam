@@ -1,0 +1,30 @@
+﻿<style>
+    .mar{
+        margin-left:15px;
+    }
+
+    .col-xs-12.col-md-7.col-lg-8.input-group.ng-scope{
+        width:200px;
+    }
+
+</style>
+<div>
+    <div layout="row" ng-class="{'loader-display' : loader}" layout-align="space-around" style="margin-top:80px;">
+        <md-progress-circular md-mode="indeterminate" md-diameter="40"></md-progress-circular>
+    </div>
+    <div class="row" layout="row" layout-md="column" layout-sm="column" ng-class="{'loader-display' : !loader}">
+        <div flex class="col-lg-12">
+            
+            <div class="col-md-12 col-lg-12" ultimate-datatable="datatable">
+            </div>
+
+        </div>
+
+        <div flex class="col-lg-12" >
+           
+            <div class="col-md-12 col-lg-12" ultimate-datatable="datatable1">
+            </div>
+
+        </div>
+    </div>
+</div>

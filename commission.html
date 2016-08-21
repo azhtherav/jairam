@@ -1,0 +1,281 @@
+﻿<div >
+    <div layout="row" ng-class="{'loader-display' : loader}" layout-align="space-around" style="margin-top:80px;">
+        <md-progress-circular md-mode="indeterminate" md-diameter="40"></md-progress-circular>
+    </div>
+    <div layout="row" layout-sm="column" ng-class="{'loader-display' : !loader}">
+        <div flex>
+            <div style="height:75vh; overflow:auto;">
+                <div layout="column" class="detail-column" flex-sm="100" flex-gt-sm="100" flex-md="100" flex-gt-md="50" flex-lg="50" flex-gt-lg="50" ng-repeat="ddd in assignLoad | filter:{lorryno: commition.lorryno, nameboard:commition.nameboard, loadstatus:'loadregister'}">
+                    <div ng-click="selectLoadCommition(ddd)" class="lorry-continer">
+                        <div>
+                            <div class="heading">lorry no.</div>
+                            <div class="detail-data"> - {{ddd.lorryno}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">from</div>
+                            <div class="detail-data"> - {{ddd.lfrom}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">to</div>
+                            <div class="detail-data"> - {{ddd.lto}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">truck type</div>
+                            <div class="detail-data"> - {{ddd.trucktype}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">fright</div>
+                            <div class="detail-data"> - {{ddd.fright}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">vehicle fright</div>
+                            <div class="detail-data"> - {{ddd.vfright}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">transporter name</div>
+                            <div class="detail-data"> - {{ddd.transportername}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">transporter number</div>
+                            <div class="detail-data"> - {{ddd.transporterphone}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">lorry no.</div>
+                            <div class="detail-data"> - {{ddd.loadname}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">lorry type.</div>
+                            <div class="detail-data"> - {{ddd.lorrytype}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">lorry contact no.</div>
+                            <div class="detail-data"> - {{ddd.ophone}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">lorry name board</div>
+                            <div class="detail-data"> - {{ddd.nameboard}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">status</div>
+                            <div class="detail-data"> - {{ddd.loadstatus}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top:0;">
+                <label style="background-color: #D32F2F; color:#FFF; text-transform:uppercase; margin-top: 10px; padding: 8px;">Driver Detail</label>
+            </div>
+            <hr style="color:#ff0000;" />
+            <div style="height:50vh; overflow:auto;">
+                <div layout="column" class="detail-column" flex-sm="100" flex-gt-sm="100" flex-md="100" flex-gt-md="50" flex-lg="50" flex-gt-lg="50" ng-repeat="ddd in driverLoad | filter:{drivername: driver.drivername, phoneno: driver.phoneno, licenceno: driver.licenceno}">
+                    <div ng-click="selectLoadDriver(ddd)" class="lorry-continer">
+                        <div>
+                            <div class="heading">driver name</div>
+                            <div class="detail-data"> - {{ddd.drivername}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">phone no</div>
+                            <div class="detail-data"> - {{ddd.phoneno}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">licence no</div>
+                            <div class="detail-data"> - {{ddd.licenceno}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">address</div>
+                            <div class="detail-data"> - {{ddd.address}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div layout="row" layout-sm="column">
+                <md-button flex ng-click="addCommition()" class="md-accent form-btn md-primary" ng-disabled="lorryForm.$invalid"><i class="fa fa-plus-square"></i> add</md-button>
+                <md-button flex ng-click="addDriver()" class="md-accent form-btn md-primary"><i class="fa fa-plus-square"></i> add driver</md-button>
+                <md-button flex type="rest" class="md-accent form-btn md-primary" ng-click="resetForm()">clear</md-button>
+            </div>
+        </div>
+        <div flex>
+            <div style="margin-left:10px;">
+                <form name="lorryForm" novalidate>
+                    <div class="form-group form-data">
+                        <div class="input-lable"><i class="fa fa-truck"></i> Lorry no *{{commition.loadid}} </div>
+                        <input ng-model="commition.lorryno"
+                               name="lorryno"
+                               type="text"
+                               class="input-content"
+                               placeholder="Lorry Number"
+                               required />
+                        <p class="validation" ng-show="lorryForm.lorryno.$invalid && !lorryForm.lorryno.$pristine">Lorry number is required.</p>
+                    </div>
+                    <div class="form-group form-data">
+                        <div class="input-lable"><i class="fa fa-calendar"></i> date - {{todaydate}} </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-lable"><i class="fa fa-user"></i> name board</div>
+                        <input ng-model="commition.nameboard"
+                               type="text"
+                               class="input-content"
+                               placeholder="Name Board"
+                               required />
+                    </div>
+                    <div style="margin-top:20px;">
+                        <div class="form-group form-data">
+                            <div class="input-lable"><i class="fa fa-location-arrow"></i> from *</div>
+                            <input ng-model="commition.lfrom"
+                                   name="currentcity"
+                                   type="text"
+                                   googleplace
+                                   class="input-content"
+                                   placeholder="from city"
+                                   required />
+                        </div>
+                        <div class="form-group form-data">
+                            <div class="input-lable"><i class="fa fa-plane"></i> destination * (to)</div>
+                            <input ng-model="commition.lto"
+                                   name="designation"
+                                   type="text"
+                                   googleplace
+                                   class="input-content"
+                                   placeholder="designation"
+                                   required />
+                        </div>
+                    </div>
+                    <div class="form-group form-data">
+                        <div class="input-lable">fright *</div>
+                        <input ng-model="commition.fright"
+                               type="number"
+                               class="input-content"
+                               placeholder="fright"
+                               required />
+                    </div>
+                    <div class="form-group form-data">
+                        <div class="input-lable">vehicle fright *</div>
+                        <input ng-model="commition.vfright"
+                               type="number"
+                               class="input-content"
+                               placeholder="vehicle fright"
+                               required />
+                    </div>
+                    <div class="form-group form-data">
+                        <div class="input-lable">driver commission persent* </div>
+                        <input ng-model="commition.dcommitionpercent"
+                               type="number"
+                               class="input-content"
+                               placeholder="commission percent"
+                               required />
+                    </div>
+
+                    <div class="form-group form-data">
+                        <div class="input-lable">driver commission* </div>
+                        <input ng-model="commition.dcommition=(commition.fright / 100) * commition.dcommitionpercent"
+                               type="number"
+                               class="input-content"
+                               placeholder="commission percent"
+                               required />
+                    </div>
+
+                    <div class="form-group form-data">
+                        <div class="input-lable">advance*</div>
+                        <input ng-model="commition.advance"
+                               type="number"
+                               class="input-content"
+                               placeholder="advance"
+                               required />
+                    </div>
+                    
+                    <div class="form-group form-data">
+                        <div class="input-lable">balance </div>
+                        <input ng-model="commition.balance = commition.vfright - commition.advance"
+                               type="number"
+                               class="input-content"
+                               placeholder="balance"
+                               value="{{commition.vfright - commition.advance}}"
+                               required />
+                    </div>
+
+                    <div class="form-group form-data">
+                        <div class="input-lable">t. Mamul </div>
+                        <input ng-model="commition.tmamul"
+                               type="number"
+                               class="input-content"
+                               placeholder="T. mamul"
+                               required />
+                    </div>
+                    
+
+                    <div class="form-group form-data">
+                        <div class="input-lable">driver commission total </div>
+                        <input ng-model="commition.dcommitiontotal =commition.tmamul + commition.dcommition"
+                               type="number"
+                               class="input-content"
+                               placeholder="total"
+                               required />
+                    </div>
+
+                    <div class="form-group form-data">
+                        <div class="input-lable">mode of payment</div>
+                        <md-radio-group ng-model="commition.paymentmode" required>
+                            <md-radio-button value="too pay" class="md-primary">too pay</md-radio-button>
+                            <md-radio-button value="advance" class="md-primary">advance</md-radio-button>
+                        </md-radio-group>
+                    </div>
+
+                    <!--<div class="form-group form-data">
+                        <div class="input-lable">commission paid </div>
+                        <input ng-model="commition.topay"
+                               type="number"
+                               class="input-content"
+                               placeholder="total"
+                               required />
+                    </div>-->
+
+
+                    <div style="margin-top:20px;">
+                        <label style="background-color: #D32F2F; color:#FFF; text-transform:uppercase; margin-top: 10px; padding: 8px;">Driver Detail</label>
+                    </div>
+                    <hr style="color:#ff0000;" />
+                    <div class="form-group form-data">
+                        <div class="input-lable"><i class="fa fa-user"></i> driver name</div>
+                        <input ng-model="driver.drivername"
+                               type="text"
+                               class="input-content"
+                               placeholder="driver name" />
+                    </div>
+                    <div class="form-group form-data">
+                        <div class="input-lable"><i class="fa fa-phone-square"></i> contact no * <span class="sub-input-lable">( phone no )</span></div>
+                        <input ng-model="driver.phoneno"
+                               name="ophoneno"
+                               type="text"
+                               class="input-content"
+                               placeholder="contact number"
+                               ng-maxlength="10"
+                               ng-minlength="10"
+                               ng-pattern="/^(\d)+$/" />
+                        <p class="validation" ng-show="lorryForm.ophoneno.$error.minlength">Phone Number wrong.</p>
+                        <p class="validation" ng-show="lorryForm.ophoneno.$error.maxlength">Phone Number wrong.</p>
+                        <p class="validation" ng-show="lorryForm.ophoneno.$error.pattern">Enter number only number.</p>
+                    </div>
+                    <div class="form-group form-data">
+                        <div class="input-lable">dl. no</div>
+                        <input ng-model="driver.licenceno"
+                               type="text"
+                               class="input-content"
+                               placeholder="driver licence no" />
+                    </div>
+
+                    <div class="form-group form-data">
+                        <div class="input-lable"><i class="fa fa-globe"></i> address</div>
+                        <input ng-model="driver.address"
+                               type="text"
+                               googleplace
+                               class="input-content"
+                               placeholder="address" />
+                    </div>
+
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+    
+</div>

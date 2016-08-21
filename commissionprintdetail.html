@@ -1,0 +1,168 @@
+﻿<script>
+
+    function printDiv(divName) {
+
+        var myWindow = window.open('', '', 'width=1000,height=700');
+
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        myWindow.document.write(printContents);
+        myWindow.document.close();
+        myWindow.focus();
+        myWindow.print();
+        myWindow.close();
+
+        //document.body.innerHTML = printContents;
+       
+        //window.print();
+
+        //document.body.innerHTML = originalContents;
+    }
+
+</script>
+<div>
+    <div layout="row" ng-class="{'loader-display' : loader}" layout-align="space-around" style="margin-top:80px;">
+        <md-progress-circular md-mode="indeterminate" md-diameter="40"></md-progress-circular>
+    </div>
+    <div ng-repeat="ddd in singlecommission">
+        <div layout="row" layout-sm="column" ng-class="{'loader-display' : !loader}">
+
+            <center><input type="button" onclick="printDiv('printdiv')" value="Print Bill" /></center>
+            
+            <div id="printdiv" style="width: 650px; margin: 0px auto; border: 1px solid #000; font-size: 15px; letter-spacing: 2px; color: #002b80;">
+                <center>
+                    <div><b>(STD : 0413) Phone : 2272620 / 2272914 / 2272229 / 2272230</b></div>
+                    <div><b>Email : jairamantransport@gmail.com  Fax : 0413-2272230</b></div>
+                    <div style="color: #ff3333; font-size:25px;font-weight:bold; margin-top:10px;margin-bottom:10px;">JAI RAMAN LORRY TRANSPORT</div>
+                    <div>Near Pattanur Check Post<br/>Dhanvantri Nagar P.O., Pondicherry - 605006.</div>
+                    <div style="color: #ff3333; font-size:20px;font-weight:bold; margin-top:5px;margin-bottom:5px;"><u>Commission Bill</u></div>
+                    <div style="margin-bottom:10px; margin-top:20px;">
+                        <table width="600">
+                            <tr style="height:30px;">
+                                <td>Lorry No : {{ddd.lorryno}}</td>
+                                <td align="right">Date : {{ddd.loadingdate}}</td>
+                            </tr>
+                            <tr style="height:30px;">
+                                <td colspan="2">Name Board : {{ddd.nameboard}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style="width:600px; border-bottom: 2px solid #002b80; border-top: 2px solid #002b80;padding-top:10px;padding-bottom:10px;">
+                        <table width="600">
+                            <tr>
+                                <td>From : Pondicherry</td>
+                                <td align="right">To : {{ddd.lto}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style="width:600px;">
+                        <div style="width: 290px; display: inline-block; border-right: 2px solid #002b80; height:300px;">
+                        
+                            <table width="280" style=" margin-top: 15px;">
+                                <tr style="height:30px;">
+                                    <td>Freight</td>
+                                    <td>Rs.</td>
+                                    <td align="right">{{ddd.fright}}</td>
+                                </tr>
+                                <tr style="height:30px;">
+                                    <td>Advance</td>
+                                    <td>Rs.</td>
+                                    <td align="right">{{ddd.advance}}</td>
+                                </tr>
+                                <tr style="height:20px;"></tr>
+                                <tr style="height:50px;">
+                                    <td>Balance</td>
+                                    <td>Rs.</td>
+                                    <td align="right" style="border-bottom: 2px solid #002b80; border-top: 2px solid #002b80;">{{ddd.fright - ddd.advance}}</td>
+                                </tr>
+                                <tr style="height:30px;">
+                                    <td colspan="2">
+                                        <b style="font-size:11px;">குறிப்பு : </b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+
+                                        <span style="color: #ff3333; font-size:10px;">லோடு ஏற்றிய 10 நாட்களுக்குள் ரிசிவுடு வரத்தவறினால் டிரான்ஸ்போர்ட் மற்றும் கம்பெனிகள் பிடிக்கும் பணத்திற்கு நாங்கள் பொறப்பல்ல.</span>
+
+                                    </td>
+                                </tr>
+                            </table>
+                               
+                        </div>
+                        <div style="width: 290px; display: inline-block; height: 300px;">
+
+                            <table width="280" style=" margin-top: 15px;">
+                                <tr style="height:30px;">
+                                    <td>Commission</td>
+                                    <td>Rs.</td>
+                                    <td align="right">{{ddd.dcommition}}</td>
+                                </tr>
+                                <tr style="height:30px;">
+                                    <td>T.Mamul</td>
+                                    <td>Rs.</td>
+                                    <td align="right">{{ddd.tmamul}}</td>
+                                </tr>
+                                <tr style="height:20px;"></tr>
+                                <tr style="height:50px;">
+                                    <td>Total</td>
+                                    <td>Rs.</td>
+                                    <td align="right" style="border-bottom: 2px solid #002b80; border-top: 2px solid #002b80;">{{ddd.dcommition + ddd.tmamul}}</td>
+                                </tr>
+
+                            </table>
+
+                        </div>
+                    </div>
+                    <div style="border-bottom:2px solid #002b80; width:600px;">
+                        <div style="margin-top: 10px; margin-bottom: 10px; text-align:right; margin-right:110px;">
+                            For <span style="color: #ff3333; font-size:13px;font-weight:bold; letter-spacing:0;">JAI RAMAN LORRY TRANSPORT</span>
+                        </div>
+                    </div>
+
+                    <div style="width:600px; margin-top:10px;">
+                        <div style="width: 290px; display: inline-block;">
+
+                            <table width="280">
+                                <tr style="height:30px;">
+                                    <td colspan="2">Driver's Particulars</td>
+                                </tr>
+                                <tr style="height:30px;">
+                                    <td>Name</td>
+                                    <td>{{ddd.drivername}}</td>
+                                </tr>
+                                
+                                <tr style="height:30px;">
+                                    <td>D.L.No.</td>
+                                    <td>PY01198000433</td>
+                                </tr>
+
+                                <tr style="height:30px;">
+                                    <td>Address</td>
+                                    <td>Testing Address</td>
+                                </tr>
+                                
+                            </table>
+
+                        </div>
+                        <div style="width: 290px; display: inline-block;">
+
+                            <table width="280">
+                                <tr>
+                                    <td align="right">Signature</td>
+                                </tr>
+                                
+                            </table>
+
+                        </div>
+                    </div>
+
+                    <br/>
+                </center>
+            </div>
+        
+        </div>
+    </div>
+</div>
+

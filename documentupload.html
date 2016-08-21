@@ -1,0 +1,35 @@
+﻿<div >
+    <div layout="row" ng-class="{'loader-display' : loader}" layout-align="space-around" style="margin-top:80px;">
+        <md-progress-circular md-mode="indeterminate" md-diameter="40"></md-progress-circular>
+    </div>
+    <div ng-class="{'loader-display' : !loader}">
+        <div class="form-group form-data">
+            <div class="input-lable">Select File</div>
+            <input type="file" class="input-content" file-model="myFile" />
+        </div>
+        <div class="form-group form-data">
+            <div class="input-lable">lorry number</div>
+            <input list="lorylist" ng-model="filename"
+                   type="text"
+                   class="input-content"
+                   placeholder="file name" />
+            <datalist id="lorylist" >
+                <option ng-repeat="ddd in listingData">{{ddd.lorryno}}</option>
+            </datalist>
+            <!--<div>
+                <md-radio-group ng-model="filename">
+                    <md-radio-button ng-repeat="ddd in listingData" value="{{ddd.lorryno}}" class="md-primary">{{ddd.lorryno}}</md-radio-button>
+                </md-radio-group>
+            </div>-->
+        </div>
+        <div class="form-group form-data">
+            <div class="input-lable">status</div>
+            <md-radio-group ng-model="document">
+                <md-radio-button value="RC" class="md-primary">RC</md-radio-button>
+                <md-radio-button value="Insurance" class="md-primary">Insurance</md-radio-button>
+                <md-radio-button value="LorryImage" class="md-primary">Lorry Image</md-radio-button>
+            </md-radio-group>
+        </div>
+        <md-button class="md-accent form-btn md-primary" ng-click="upFile()">upload</md-button>
+    </div>
+</div>

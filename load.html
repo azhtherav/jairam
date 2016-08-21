@@ -1,0 +1,237 @@
+﻿<div>
+    <div layout="row" ng-class="{'loader-display' : loader}" layout-align="space-around" style="margin-top:80px;">
+        <md-progress-circular md-mode="indeterminate" md-diameter="40"></md-progress-circular>
+    </div>
+    <div layout="row" layout-sm="column" ng-class="{'loader-display' : !loader}">
+        <div flex>
+            <form name="transportForm" novalidate style="margin-bottom:10px;">
+                <div class="form-group form-data">
+                    <div class="input-lable" ng-model="transport.tranporterid"><i class="fa fa-truck"></i> transporter name * {{transport.tranporterid}} </div>
+                    <input ng-model="transport.transportername"
+                           name="transportername"
+                           type="text"
+                           class="input-content"
+                           placeholder="transporter name"
+                           required />
+                    <p class="validation" ng-show="transportForm.transportername.$invalid && !transportForm.transportername.$pristine">Name is required.</p>
+                </div>
+                <div class="form-group form-data">
+                    <div class="input-lable"><i class="fa fa-phone-square"></i> transporter no * <span class="sub-input-lable">( phone no )</span></div>
+                    <input ng-model="transport.transporterphone"
+                           name="transporterphone"
+                           type="text"
+                           class="input-content"
+                           placeholder="transporter number"
+                           ng-pattern="/^(\d{10}/)*\d{10}$/"
+                           required />
+                    <p class="validation" ng-show="transportForm.transporterphone.$error.pattern">Enter number only number.</p>
+                </div>
+                <div class="form-group form-data">
+                    <div class="input-lable"><i class="fa fa-user"></i> contant name</div>
+                    <input ng-model="transport.accountno"
+                           name="contant name"
+                           type="text"
+                           class="input-content"
+                           placeholder="contant name" />
+                </div>
+                <div class="form-group form-data">
+                    <div class="input-lable"><i class="fa fa-location-arrow"></i> area *</div>
+                    <input ng-model="transport.area"
+                           name="area"
+                           type="text"
+                           googleplace
+                           class="input-content"
+                           placeholder="area" />
+                </div>
+                <div class="form-group form-data">
+                    <div class="input-lable"><i class="fa fa-phone-square"></i> landline *</div>
+                    <input ng-model="transport.landline"
+                           name="landline"
+                           type="text"
+                           class="input-content"
+                           placeholder="landline no" />
+                </div>
+
+                <div layout="row">
+                    <md-button flex ng-click="addtrans()" class="md-accent form-btn md-primary" ng-disabled="transportForm.$invalid"><i class="fa fa-plus-square"></i> add transport</md-button>
+                    <md-button flex class="md-accent form-btn md-primary" ng-click="editTrans()" ng-disabled="editenable"><i class="fa fa-pencil fa-fw"></i> Edit</md-button>
+                </div>
+                <div layout="row">
+                    <md-button flex class="md-accent form-btn md-primary" ng-disabled="deleteenable">delete</md-button>
+                    <md-button flex type="rest" class="md-accent form-btn md-primary" ng-click="resetForm()">clear</md-button>
+                </div>
+            </form>
+            <label style="background-color: #D32F2F; color:#FFF; text-transform:uppercase; margin-top: 10px; padding: 8px;">Load Detail</label>
+            <hr style=" margin-bottom:20px; color:#ff0000;" />
+            <form name="lorryloadForm" novalidate ng-hide="transportForm.$invalid">
+
+                <div class="form-group">
+                    <div class="input-lable"><i class="fa fa-truck"></i> load name * </div>
+                    <input ng-model="lorryload.loadname"
+                           name="loadname"
+                           type="text"
+                           class="input-content"
+                           placeholder="load name"
+                           required />
+                    <p class="validation" ng-show="lorryloadForm.loadname.$invalid && !transportForm.loadname.$pristine">Load Name is required.</p>
+                </div>
+                <div class="form-group form-data">
+                    <div class="input-lable"><i class="fa fa-location-arrow"></i> from *</div>
+                    <input ng-model="lorryload.lfrom"
+                           name="currentcity"
+                           type="text"
+                           googleplace
+                           class="input-content"
+                           placeholder="from city"
+                           required />
+                </div>
+                <div class="form-group form-data">
+                    <div class="input-lable"><i class="fa fa-plane"></i> designation * (to)</div>
+                    <input ng-model="lorryload.lto"
+                           name="designation"
+                           type="text"
+                           googleplace
+                           class="input-content"
+                           placeholder="designation"
+                           required />
+                </div>
+                <div class="form-group form-data">
+                    <div class="input-lable">Truck Type * <span class="sub-input-lable">{{lorryload.trucktype}}</span></div>
+                    <md-radio-group ng-model="lorryload.trucktype">
+                        <md-radio-button value="6 wheel" class="md-primary">6 wheel</md-radio-button>
+                        <md-radio-button value="10 wheel" class="md-primary">10 wheel</md-radio-button>
+                        <md-radio-button value="12 wheel" class="md-primary">12 wheel</md-radio-button>
+                        <md-radio-button value="14 wheel" class="md-primary">14 wheel</md-radio-button>
+                        <md-radio-button value="continer" class="md-primary">continer</md-radio-button>
+                        <md-radio-button value="van" class="md-primary">van</md-radio-button>
+                    </md-radio-group>
+                </div>
+
+                <!--<div class="form-group form-data">
+                    <div class="input-lable">status</div>
+                    <md-radio-group ng-model="lorryload.loadstatus">
+                        <md-radio-button value="new" class="md-primary">new</md-radio-button>
+                        <md-radio-button value="loadregister" class="md-primary">Load Register</md-radio-button>
+                        <md-radio-button value="commission" class="md-primary">Commission</md-radio-button>
+                    </md-radio-group>
+                </div>-->
+
+                <div class="form-group form-data">
+                    <div class="input-lable">fright *</div>
+                    <input ng-model="lorryload.fright"
+                           type="number"
+                           class="input-content"
+                           placeholder="fright"
+                           required />
+                </div>
+
+
+
+                <div class="form-group form-data">
+                    <div class="input-lable">tone *</div>
+                    <input ng-model="lorryload.tone"
+                           type="number"
+                           class="input-content"
+                           placeholder="tone"
+                           required />
+                </div>
+
+                <div class="form-group form-data">
+                    <div class="input-lable">vehicle fright *</div>
+                    <input ng-model="lorryload.vfright"
+                           type="number"
+                           class="input-content"
+                           placeholder="vehicle fright"
+                           required />
+                </div>
+
+                <div layout="row" layout-sm="column">
+                    <md-button flex ng-click="addLoad()" class="md-accent form-btn md-primary" ng-disabled="lorryloadForm.$invalid"><i class="fa fa-plus-square"></i> add load</md-button>
+                    <md-button flex class="md-accent form-btn md-primary" ng-click="editLoad()" ng-disabled="editenableload"><i class="fa fa-pencil fa-fw"></i> Edit</md-button>
+                    <md-button flex class="md-accent form-btn md-primary" ng-disabled="deleteenableload">delete</md-button>
+                    <md-button flex type="rest" class="md-accent form-btn md-primary" ng-click="resetLoad()">clear</md-button>
+                </div>
+
+            </form>
+        </div>
+        <div flex style="height:90vh; overflow-y:auto;">
+            <div style="margin-top:0;">
+                <label style="background-color: #D32F2F; color:#FFF; text-transform:uppercase; margin-top: 10px; padding: 8px;">Transporter Detail</label>
+            </div>
+            <hr style="color:#ff0000;" />
+            <div style="height:30%; overflow:auto;">
+                <div layout="column" class="detail-column" flex-sm="100" flex-gt-sm="100" flex-md="100" flex-gt-md="501" flex-lg="50" flex-gt-lg="50" ng-repeat="ddd in trans | filter:{transportername: transport.transportername, transporterphone: transport.transporterphone, landline: transport.landline, area: transport.area}">
+                    <div ng-click="selectTrans(ddd)" class="lorry-continer">
+                        <div>
+                            <div class="heading">transportername name</div>
+                            <div class="detail-data"> - {{ddd.transportername}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">phone</div>
+                            <div class="detail-data"> - {{ddd.transporterphone}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">landline no</div>
+                            <div class="detail-data"> - {{ddd.landline}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">area</div>
+                            <div class="detail-data"> - {{ddd.area}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">contant name</div>
+                            <div class="detail-data"> - {{ddd.accountno}}</div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top:0;">
+                <label style="background-color: #D32F2F; color:#FFF; text-transform:uppercase; margin-top: 10px; padding: 8px;">load Detail</label>
+            </div>
+            <hr style="color:#ff0000;" />
+            <div style="height:40%; overflow:auto;" ng-hide="transportForm.$invalid">
+                <div layout="column" class="detail-column" flex-sm="100" flex-gt-sm="100" flex-md="100" flex-gt-md="501" flex-lg="50" flex-gt-lg="50" ng-repeat="ddd in lload | filter:{tranporterid: transport.tranporterid, loadstatus:'new'}">
+                    <div ng-click="selectLoad(ddd)" class="lorry-continer">
+                        <div>
+                            <div class="heading">load name</div>
+                            <div class="detail-data"> - {{ddd.loadname}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">from</div>
+                            <div class="detail-data"> - {{ddd.lfrom}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">to</div>
+                            <div class="detail-data"> - {{ddd.lto}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">truck type</div>
+                            <div class="detail-data"> - {{ddd.trucktype}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">fright</div>
+                            <div class="detail-data"> - {{ddd.fright}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">transporter name</div>
+                            <div class="detail-data"> - {{ddd.transportername}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">transporter number</div>
+                            <div class="detail-data"> - {{ddd.transporterphone}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">vehicle fright</div>
+                            <div class="detail-data"> - {{ddd.vfright}}</div>
+                        </div>
+                        <!--<div>
+                            <div class="heading">status</div>
+                            <div class="detail-data"> - {{ddd.loadstatus}}</div>
+                        </div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

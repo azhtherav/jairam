@@ -1,0 +1,23 @@
+﻿<md-bottom-sheet class="md-list md-has-header">
+    <md-subheader>Edit Lorry: {{selectLorry.lorryno}}</md-subheader>
+    <div layout="row" layout-md="column" layout-sm="column">
+        <div class="form-group form-data">
+            <div class="input-lable"><i class="fa fa-money"></i> Acc. No.</div>
+            <input ng-model="selectLorry.accountno"
+                   type="text"
+                   class="input-content"
+                   placeholder="account no" />
+        </div>
+
+        <div class="form-group form-data">
+            <div class="input-lable"><i class="fa fa-money"></i> pancard No.</div>
+            <input ng-model="selectLorry.pancard"
+                   type="text"
+                   class="input-content"
+                   placeholder="pancard no" />
+        </div>
+    </div>
+    <div layout="row">
+        <md-button flex class="md-accent form-btn md-primary" ng-click="editLorry()"><i class="fa fa-pencil fa-fw"></i> Edit</md-button>
+    </div>
+</md-bottom-sheet>

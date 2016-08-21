@@ -1,0 +1,175 @@
+﻿<div>
+    <div layout="row" ng-class="{'loader-display' : loader}" layout-align="space-around" style="margin-top:80px;">
+        <md-progress-circular md-mode="indeterminate" md-diameter="40"></md-progress-circular>
+    </div>
+    <div class="row" layout="row" layout-md="column" layout-sm="column" ng-class="{'loader-display' : !loader}">
+        <div flex class="col-lg-12">
+            <form name="lorryForm" novalidate>
+                <div class="form-group">
+                    <div class="input-lable"><i class="fa fa-truck"></i> Lorry no * </div>
+                    <input list="lorryNoList" ng-model="lorry.lorryno" ng-change="testfunction(lorry.lorryno)" ng-disabled="lorrynoenable"
+                           name="lorryno"
+                           type="text"
+                           class="input-content"
+                           placeholder="Lorry Number"
+                           required />
+                    <datalist id="lorryNoList">
+                        <option ng-repeat="ddd in listingData" value="{{ddd.lorryno}}">{{ddd.lorryno}}</option>
+                    </datalist>
+                    <p class="validation" ng-show="lorryForm.lorryno.$invalid && !lorryForm.lorryno.$pristine">Lorry number is required.</p>
+                </div>
+                <div style="margin-top:20px;"></div>
+                <div class="form-group form-data">
+                    <div class="input-lable"><i class="fa fa-phone-square"></i> owner phone no * <span class="sub-input-lable">( p.no. )</span></div>
+                    <input ng-model="lorry.ophone"
+                           name="ophoneno"
+                           type="text"
+                           class="input-content"
+                           placeholder="contact number"
+                           ng-pattern="/^(\d{10}/)*\d{10}$/" />
+                    <p class="validation" ng-show="lorryForm.ophoneno.$error.pattern">Enter number only number.</p>
+                </div>
+                <div class="form-group form-data">
+                    <div class="input-lable"><i class="fa fa-phone-square"></i> Driver phone no * <span class="sub-input-lable">( p.no. )</span></div>
+                    <input ng-model="lorry.dphone"
+                           name="dphoneno"
+                           type="text"
+                           class="input-content"
+                           placeholder="contact number"
+                           ng-pattern="/^(\d{10}/)*\d{10}$/" />
+                    <p class="validation" ng-show="lorryForm.dphoneno.$error.pattern">Enter number only number.</p>
+                </div>
+                <!--<div class="form-group form-data">
+                    <div class="input-lable"><i class="fa fa-map-marker"></i> current city * <span class="sub-input-lable">( N. or from )</span></div>
+                    <input ng-model="lorry.currentcity"
+                           ng-init="lorry.currentcity = 'PUDUCHERRY, INDIA'"
+                           name="currentcity"
+                           type="text"
+                           googleplace
+                           class="input-content"
+                           placeholder="current city"
+                            />
+                </div>-->
+                <div class="form-group form-data">
+                    <div class="input-lable">lorry Type * <span class="sub-input-lable">{{lorry.lorrytype}}</span></div>
+                    <input list="lorryTypeList" ng-model="lorry.lorrytype"
+                           name="lorrytype"
+                           type="text"
+                           class="input-content"
+                           placeholder="Lorry Type"
+                           />
+                    <datalist id="lorryTypeList">
+                        <option value="6 wheel" class="md-primary">6 wheel</option>
+                        <option value="10 wheel" class="md-primary">10 wheel</option>
+                        <option value="12 wheel" class="md-primary">12 wheel</option>
+                        <option value="14 wheel" class="md-primary">14 wheel</option>
+                        <option value="container" class="md-primary">container</option>
+                        <option value="van" class="md-primary">van</option>
+                    </datalist>
+                </div>
+                <div class="form-group form-data">
+                    <div class="input-lable">tone *</div>
+                    <input ng-model="lorry.tone"
+                           type="number"
+                           class="input-content"
+                           placeholder="tone"
+                           />
+                </div>
+                
+                <div class="form-group form-data">
+                    <div class="input-lable"><i class="fa fa-user"></i> contact name *</div>
+                    <input ng-model="lorry.contactname"
+                           type="text"
+                           class="input-content"
+                           placeholder="contact name" />
+                </div>
+                <div class="form-group form-data">
+                    <div class="input-lable"><i class="fa fa-user"></i> name board</div>
+                    <input ng-model="lorry.nameboard"
+                           type="text"
+                           class="input-content"
+                           placeholder="Name Board" />
+                </div>
+                <div class="form-group form-data">
+                    <div class="input-lable"><i class="fa fa-user"></i> owner name</div>
+                    <input ng-model="lorry.ownername"
+                           type="text"
+                           class="input-content"
+                           placeholder="owner name" />
+                </div>
+                <div class="form-group form-data">
+                    <div class="input-lable"><i class="fa fa-money"></i> Acc. No.</div>
+                    <input ng-model="lorry.accountno"
+                           type="text"
+                           class="input-content"
+                           placeholder="account no" />
+                </div>
+
+                <div class="form-group form-data">
+                    <div class="input-lable"><i class="fa fa-money"></i> pancard No.</div>
+                    <input ng-model="lorry.pancard"
+                           type="text"
+                           class="input-content"
+                           placeholder="pancard no" />
+                </div>
+
+                <div class="form-group form-data">
+                    <div class="input-lable"><i class="fa fa-globe"></i> address</div>
+                    <input ng-model="lorry.address"
+                           type="text"
+                           googleplace
+                           class="input-content"
+                           placeholder="address" />
+                </div>
+
+
+            </form>
+            <div>
+                <md-button flex ng-click="addlorry()" class="md-accent form-btn md-primary" ng-disabled="addenable"><i class="fa fa-plus-square"></i> add lorry</md-button>
+                <md-button flex class="md-accent form-btn md-primary" ng-click="editLorry()" ng-disabled="editenable"><i class="fa fa-pencil fa-fw"></i> Edit</md-button>
+                <md-button flex class="md-accent form-btn md-primary" ng-click="deleteLorry()" ng-disabled="deleteenable">delete</md-button>
+                <md-button flex type="rest" class="md-accent form-btn md-primary" ng-click="resetForm()">clear</md-button>
+            </div>
+        </div>
+        <div flex class="col-lg-12" >
+           
+            <div style="height:80vh; overflow-y:auto; position:relative;" ng-class="{'display-note' : displayNotes}">
+                <div class="detail-column" ng-repeat="ddd in listingData | filter:{lorryno: lorry.lorryno, ophone: lorry.ophone, lorrytype: lorry.lorrytype, designation: lorry.designation, status: lorry.status, dphone: lorry.dphone}">
+                    <div ng-click="selectLorry(ddd)" class="lorry-continer col-lg-12">
+                        <div ng-if="ddd.lorryimage != ''">
+                            <img ng-src="{{'http://api.jairamantransport.com/Uploads/'+ ddd.lorryimage}}" height="100" />
+                        </div>
+                        <div>
+                            <div class="heading">Vechicle Number</div>
+                            <div class="detail-data"> - {{ddd.lorryno}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">type</div>
+                            <div class="detail-data"> - {{ddd.lorrytype}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">Owner Phone</div>
+                            <div class="detail-data"> - {{ddd.ophone}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">Driver Phone</div>
+                            <div class="detail-data"> - {{ddd.dphone}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">contact name</div>
+                            <div class="detail-data"> - {{ddd.contactname}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">current city</div>
+                            <div class="detail-data"> - {{ddd.currentcity}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">name board</div>
+                            <div class="detail-data"> - {{ddd.nameboard}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

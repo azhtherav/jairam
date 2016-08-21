@@ -1,0 +1,88 @@
+﻿<style>
+    .mar{
+        margin-left:15px;
+    }
+
+</style>
+<div>
+    <div layout="row" ng-class="{'loader-display' : loader}" layout-align="space-around" style="margin-top:80px;">
+        <md-progress-circular md-mode="indeterminate" md-diameter="40"></md-progress-circular>
+    </div>
+    <div class="row" layout="row" layout-md="column" layout-sm="column" ng-class="{'loader-display' : !loader}">
+        <div flex class="col-lg-12">
+            
+                <input ng-model="notes.lorryno"
+                       name="lorryno"
+                       type="text"
+                       class="input-content mar"
+                       placeholder="Lorry Number" />
+
+                <br />
+                <textarea draggable="false" ng-change="testfunction2(notes.note)" ng-model="notes.note" name="note" cols="20" rows="5" class="mar input-content" style="resize:none;" placeholder="Notes"></textarea>
+
+            <div>
+                <md-button class="md-accent form-btn md-primary" ng-click="addnotes()" ng-disabled="addenable">Add Lorry Note</md-button>
+            </div>
+            
+            <br/>
+
+            <div style="height:100vh; overflow-y:auto; position:relative;">
+                <div class="detail-column" ng-repeat="ddd in note | filter:{lorryno: notes.lorryno, note: notes.note}">
+                    <div class="lorry-continer col-lg-12">
+                        <div>
+                            <div class="heading">Lorry Number</div>
+                            <div class="detail-data"> - {{ddd.lorryno}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">Date</div>
+                            <div class="detail-data"> - {{ddd.addeddate}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">Notes</div>
+                            <div class="detail-data"> - {{ddd.note}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div flex class="col-lg-12" >
+           
+            <input ng-model="loadnotes.transportername"
+                   name="transportername"
+                   type="text"
+                   class="input-content mar"
+                   placeholder="Transporter Name" />
+
+            <br />
+            <textarea draggable="false" ng-change="testfunction1(loadnotes.note)" ng-model="loadnotes.note" name="note" cols="20" rows="5" class="mar input-content" style="resize:none;" placeholder="Notes"></textarea>
+
+            <div>
+                <md-button class="md-accent form-btn md-primary" ng-click="addloadnotes()" ng-disabled="addenable1">Add Load Note</md-button>
+            </div>
+
+            <br />
+
+            <div style="height:100vh; overflow-y:auto; position:relative;">
+                <div class="detail-column" ng-repeat="ddd in loadnote | filter:{transportername: loadnotes.transportername, note: loadnotes.note}">
+                    <div class="lorry-continer col-lg-12">
+                        <div>
+                            <div class="heading">Transporter Name</div>
+                            <div class="detail-data"> - {{ddd.transportername}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">Date</div>
+                            <div class="detail-data"> - {{ddd.addeddate}}</div>
+                        </div>
+                        <div>
+                            <div class="heading">Notes</div>
+                            <div class="detail-data"> - {{ddd.note}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>

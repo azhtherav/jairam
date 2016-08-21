@@ -1,0 +1,199 @@
+﻿<div>
+    <div layout="row" ng-class="{'loader-display' : loader}" layout-align="space-around" style="margin-top:80px;">
+        <md-progress-circular md-mode="indeterminate" md-diameter="40"></md-progress-circular>
+    </div>
+    <div ng-repeat="ddd in singlecommission">
+        <div layout="row" layout-sm="column" ng-class="{'loader-display' : !loader}">
+            
+            <div flex>
+                <div style="margin-top:0;">
+                    <label style="background-color: #D32F2F; color:#FFF; text-transform:uppercase; margin-top: 10px; padding: 8px;">Lorry Details</label>
+                </div>
+                <hr style="color:#ff0000; margin-top:10px;" />
+                
+                    <div layout="column" style="background-color: #fff;" class="detail-column" flex-sm="100" flex-gt-sm="100" flex-md="100" flex-gt-md="501" flex-lg="50" flex-gt-lg="50">
+
+                        <table wt-responsive-table border="1">
+                            <tr>
+                                <td class="padd bold">Lorry Number</td>
+                                <td class="padd">{{ddd.lorryno}}</td>
+                            </tr>
+                            <tr>
+                                <td class="padd bold">Lorry Type</td>
+                                <td class="padd">{{ddd.lorrytype}}</td>
+                            </tr>
+                            <tr>
+                                <td class="padd bold">Lorry Owner Number</td>
+                                <td class="padd">{{ddd.ophone}}</td>
+                            </tr>
+                            <tr>
+                                <td class="padd bold">Name Board</td>
+                                <td class="padd">{{ddd.nameboard}}</td>
+                            </tr>
+                            <tr>
+                                <td class="padd bold">Driver Name</td>  
+                                <td class="padd">{{ddd.drivername}}</td>
+                            </tr>
+                            <tr>
+                                <td class="padd bold">Driver Number</td>
+                                <td class="padd">{{ddd.phoneno}}</td>
+                            </tr>
+                        </table>
+
+                    </div>
+                <br/>
+                <div style="margin-top:0;">
+                    <label style="background-color: #D32F2F; color:#FFF; text-transform:uppercase; margin-top: 10px; padding: 8px;">Transporter Details</label>
+                </div>
+                <hr style="color:#ff0000; margin-top:10px;" />
+                
+                    <div layout="column" style="background-color: #fff;" class="detail-column" flex-sm="100" flex-gt-sm="100" flex-md="100" flex-gt-md="501" flex-lg="50" flex-gt-lg="50">
+
+                        <table wt-responsive-table border="1">
+                            <tr>
+                                <td class="padd bold">Transporter Name</td>
+                                <td class="padd">{{ddd.transportername}}</td>
+                            </tr>
+                            <tr>
+                                <td class="padd bold">Transporter Number</td>
+                                <td class="padd">{{ddd.transporterphone}}</td>
+                            </tr>
+                            <tr>
+                                <td class="padd bold">Load Name</td>
+                                <td class="padd">{{ddd.loadname}}</td>
+                            </tr>
+                            <tr>
+                                <td class="padd bold">Load From</td>
+                                <td class="padd">{{ddd.lfrom}}</td>
+                            </tr>
+                            <tr>
+                                <td class="padd bold">Load To</td>
+                                <td class="padd">{{ddd.lto}}</td>
+                            </tr>
+                            <tr>
+                                <td class="padd bold">Fright</td>
+                                <td class="padd">{{ddd.fright}}</td>
+                            </tr>
+                            <tr>
+                                <td class="padd bold">Vehicle Fright</td>
+                                <td class="padd">{{ddd.vfright}}</td>
+                            </tr>
+                        </table>
+
+                    </div>
+                
+            </div>
+
+            <div flex>
+                <label style="background-color: #D32F2F; color:#FFF; text-transform:uppercase; margin-top: 10px; padding: 8px;">Commission Details</label>
+                <hr style=" margin-bottom:20px; color:#ff0000; margin-top:10px;" />
+
+                <table wt-responsive-table border="1">
+                    <tr>
+                        <td class="padd bold">Commission ID</td>
+                        <td class="padd">{{ddd.commissionid}}</td>
+                    </tr>
+                    <tr>
+                        <td class="padd bold">Payment Mode</td>
+                        <td class="padd">{{ddd.paymentmode}}</td>
+                    </tr>
+                    <tr>
+                        <td class="padd bold">Balance</td>
+                        <td class="padd">{{ddd.balance}}</td>
+                    </tr>
+                    <tr>
+                        <td class="padd bold">Advance</td>
+                        <td class="padd">{{ddd.advance}}</td>
+                    </tr>
+                    <tr>
+                        <td class="padd bold">Commission Percent (%)</td>
+                        <td class="padd">{{ddd.commitionpercent}}</td>
+                    </tr>
+                    <tr>
+                        <td class="padd bold">Commission Amount</td>
+                        <td class="padd">{{ddd.commition}}</td>
+                    </tr>
+                    <tr>
+                        <td class="padd bold">Commission Balance</td>
+                        <td class="padd">{{ddd.commitionbalance}}</td>
+                    </tr>
+                    <tr>
+                        <td class="padd bold">Driver Commission Percent (%)</td>
+                        <td class="padd">{{ddd.dcommitionpercent}}</td>
+                    </tr>
+                    <tr>
+                        <td class="padd bold">Driver Commission Amount</td>
+                        <td class="padd">{{ddd.dcommition}}</td>
+                    </tr>
+                    <tr>
+                        <td class="padd bold">T-mamul</td>
+                        <td class="padd">{{ddd.tmamul}}</td>
+                    </tr>
+                    <tr>
+                        <td class="padd bold">Loading Date</td>
+                        <td class="padd">{{ddd.loadingdate}}</td>
+                    </tr>
+                    <tr>
+                        <td class="padd bold">Ack Mode</td>
+                        <td class="padd">{{ddd.ackmode}}</td>
+                    </tr>
+                    <tr>
+                        <td class="padd bold">Ack Date</td>
+                        <td class="padd">{{ddd.ackdate}}</td>
+                    </tr>
+                    <tr>
+                        <td class="padd bold">Extra KM</td>
+                        <td class="padd">{{ddd.extrakm}}</td>
+                    </tr>
+                    <tr>
+                        <td class="padd bold">Claim</td>
+                        <td class="padd">{{ddd.claim}}</td>
+                    </tr>
+                    <tr>
+                        <td class="padd bold">Total Kuli</td>
+                        <td class="padd">{{ddd.totalkuli}}</td>
+                    </tr>
+                    <tr>
+                        <td class="padd bold">Halting</td>
+                        <td class="padd">{{ddd.halting}}</td>
+                    </tr>
+                    <tr>
+                        <td class="padd bold">Kuli Deduction</td>
+                        <td class="padd">{{ddd.kulideduction}}</td>
+                    </tr>
+                    <tr>
+                        <td class="padd bold">Amount Sent to Lorry</td>
+                        <td class="padd">{{ddd.grandtotal}}</td>
+                    </tr>
+                    <tr>
+                        <td class="padd bold">Amount Sent Date</td>
+                        <td class="padd">{{ddd.amountsentdate}}</td>
+                    </tr>
+                    <tr>
+                        <td class="padd bold">Amount Received from Transporter</td>
+                        <td class="padd">{{ddd.amountreceived}}</td>
+                    </tr>
+                    <tr>
+                        <td class="padd bold">Balance Error Checking</td>
+                        <td class="padd">{{ddd.balanceerrorchecking}}</td>
+                    </tr>
+                    <tr>
+                        <td class="padd bold">Balance Received Date</td>
+                        <td class="padd">{{ddd.balancereceiveddate}}</td>
+                    </tr>
+                    <tr>
+                        <td class="padd bold">Payment Calculation</td>
+                        <td class="padd">{{ddd.paymentcalculation}}</td>
+                    </tr>
+                    <tr>
+                        <td class="padd bold">Paidin</td>
+                        <td class="padd">{{ddd.paidin}}</td>
+                    </tr>
+                </table>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+

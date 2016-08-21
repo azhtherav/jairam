@@ -1,0 +1,132 @@
+﻿.body {
+    font-weight: bold;
+}
+
+.toolbar {
+    background-color: #A53434;
+    color: #fff;
+    font-size: 12px;
+}
+
+hr {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.menu-btn {
+    color: #A53434 !important;
+    text-align: left;
+    padding-left: 20px;
+}
+
+.loader-display {
+    display: none;
+}
+
+.selectdemoBasicUsage md-input-container {
+    margin-right: 10px;
+}
+
+.margin-top {
+    margin-top: 5px;
+}
+
+.heading {
+    color: #A53434;
+    font-size: 12px;
+    margin-top: 5px;
+    margin-bottom: 3px;
+    display: inline-block;
+}
+
+.detail-data {
+    color: #000;
+    font-size: 14px;
+    margin-top: 2px;
+    display: inline-table;
+}
+
+.input-lable {
+    color: #A53434;
+    font-size: 16px;
+    margin-top: 5px;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.detail-column {
+    padding-left: 10px;
+    background-color: #f2f2f2;
+    text-transform: uppercase;
+    cursor: pointer;
+    -moz-transition: all 0.8s ease;
+    -webkit-transition: all 0.8s ease;
+    transition: all 0.8s ease;
+}
+
+    .detail-column:hover {
+        background-color: #fff;
+        cursor: pointer;
+        color: #666;
+        -moz-transition: all 0.8s ease;
+        -webkit-transition: all 0.8s ease;
+        transition: all 0.8s ease;
+    }
+
+.input-content {
+    text-transform: uppercase;
+    width: 93.5%;
+    display: block;
+    border: 1px solid #000;
+    outline: none;
+    padding: 5px;
+}
+
+.display-note {
+    display: none;
+}
+
+.form-data {
+    width: 48%;
+    display: inline-table;
+    margin-bottom: 20px;
+}
+
+.validation {
+    font-size: 10px;
+    color: red;
+}
+
+.form-btn {
+    text-align: center;
+    max-width: 140px;
+    min-width: 100px;
+    font-weight: bold;
+    color: #A53434 !important;
+    background-color: #f5f5f5;
+}
+
+.sub-input-lable {
+    font-size: 12px;
+    margin-left: 5px;
+    text-transform: capitalize;
+}
+
+.lorry-continer {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #D32F2F;
+}
+
+*:focus {
+    outline: none !important;
+}
+
+.select-btn {
+    background-color: #B8E29C;
+}
+
+.assign-btn {
+    width: 100%;
+    max-width: 100%;
+}
