@@ -1,5 +1,5 @@
-﻿var domain = "http://api.jairamantransport.com";
-//var domain = "http://localhost:1666";
+﻿//var domain = "http://api.jairamantransport.com";
+var domain = "http://localhost:1666";
 
 
 var app = angular.module('StarterApp', ['ngMaterial', 'ngRoute', 'ultimateDataTableServices']);
@@ -351,20 +351,35 @@ app.controller('enquiryCtl', ['$scope', 'getalllorry', 'addlorry', '$log', 'file
                alert('sucess');
                $scope.loader = true;
                $scope.notes = null;
+               $scope.addenable = true;
                $scope.getnotelist();
            },
            function (errorPayload) {
                alert('error');
                $scope.loader = true;
                $scope.notes = null;
+               $scope.addenable = true;
            });
     };
 
 
     $scope.getnotelist = function () {
         $scope.loader = false;
+
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0!
+        var yyyy = today.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd
+        }
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+        var todaydate = dd + '/' + mm + '/' + yyyy;
+
         var promise =
-            allgetService.getAllService(domain + "/api/Lorry/getalltodaynotes");
+            allgetService.getAllService(domain + "/api/Lorry/getalltodaynotes?today=" + todaydate);
         promise.then(
            function (payload) {
                $scope.note = payload;
@@ -386,20 +401,35 @@ app.controller('enquiryCtl', ['$scope', 'getalllorry', 'addlorry', '$log', 'file
                alert('sucess');
                $scope.loader = true;
                $scope.loadnotes = null;
+               $scope.addenable1 = true;
                $scope.getloadnotelist();
            },
            function (errorPayload) {
                alert('error');
                $scope.loader = true;
                $scope.loadnotes = null;
+               $scope.addenable1 = true;
            });
     };
 
 
     $scope.getloadnotelist = function () {
         $scope.loader = false;
+
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0!
+        var yyyy = today.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd
+        }
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+        var todaydate = dd + '/' + mm + '/' + yyyy;
+
         var promise =
-            allgetService.getAllService(domain + "/api/Lorry/getalltodayloadnotes");
+            allgetService.getAllService(domain + "/api/Lorry/getalltodayloadnotes?today=" + todaydate);
         promise.then(
            function (payload) {
                $scope.loadnote = payload;
@@ -717,6 +747,19 @@ app.controller('commissionlistCtl', ['$scope', '$location', 'getalllorry', 'addl
 app.controller('enquirysearchCtl', ['$scope', '$location', 'getalllorry', 'addlorry', '$log', 'fileUpload', 'allService', '$filter', 'allgetService', 'addassign', 'addcommition', 'datatable', function ($scope, $location, getalllorry, addlorry, $log, fileUpload, allService, $filter, allgetService, addassign, addcommition, datatable) {
     $scope.loader = false;
 
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+    var min = yyyy - 10;
+    $scope.x = [];
+
+    for (var i = min; i < yyyy + 1; i++) {
+        $scope.x.push(i);
+    }
+
+    
+
     var datatableConfig = {
         "name": "LorryNotesList",
         "columns": [
@@ -831,7 +874,7 @@ app.controller('enquirysearchCtl', ['$scope', '$location', 'getalllorry', 'addlo
     $scope.getnotelist = function () {
         $scope.loader = false;
         var promise =
-            allgetService.getAllService(domain + "/api/Lorry/getallnotes");
+            allgetService.getAllService(domain + "/api/Lorry/getnotes?year=" + $("#year").val() + "&month=" + $("#month").val());
         promise.then(
            function (payload) {
                $scope.note = payload;
@@ -849,7 +892,7 @@ app.controller('enquirysearchCtl', ['$scope', '$location', 'getalllorry', 'addlo
     $scope.getloadnotelist = function () {
         $scope.loader = false;
         var promise =
-            allgetService.getAllService(domain + "/api/Lorry/getallloadnotes");
+            allgetService.getAllService(domain + "/api/Lorry/getloadnotes?year=" + $("#year1").val() + "&month=" + $("#month1").val());
         promise.then(
            function (payload) {
                $scope.loadnote = payload;
@@ -864,12 +907,55 @@ app.controller('enquirysearchCtl', ['$scope', '$location', 'getalllorry', 'addlo
     };
 
 
-    $scope.getnotelist();
+    setTimeout(function () {
 
-    $scope.getloadnotelist();
+        $("#year").val(yyyy);
+        $("#month").val(mm);
 
-  
+        $("#year1").val(yyyy);
+        $("#month1").val(mm);
 
+        $scope.getnotelist();
+        $scope.getloadnotelist();
+
+    }, 1000);
+
+
+    $scope.getnotelistall = function () {
+        $scope.loader = false;
+        var promise =
+            allgetService.getAllService(domain + "/api/Lorry/getallnotes");
+        promise.then(
+           function (payload) {
+               $scope.note = payload;
+               $scope.datatable = datatable(datatableConfig);
+               $scope.datatable.setData(payload);
+               $scope.loader = true;
+           },
+           function (errorPayload) {
+               alert('get note error');
+               $scope.loader = true;
+           });
+    };
+
+
+    $scope.getloadnotelistall = function () {
+        $scope.loader = false;
+        var promise =
+            allgetService.getAllService(domain + "/api/Lorry/getallloadnotes");
+        promise.then(
+           function (payload) {
+               $scope.loadnote = payload;
+               $scope.datatable1 = datatable(datatableConfig1);
+               $scope.datatable1.setData(payload);
+               $scope.loader = true;
+           },
+           function (errorPayload) {
+               alert('get note error');
+               $scope.loader = true;
+           });
+    };
+        
    
 }]);
 

@@ -14,6 +14,9 @@
                         <th class="padd">Lorry No</th>
                         <th class="padd">Loading Date</th>
                     </tr>
+                    <tr style="height:40px;" ng-if="allopencommissionList.length==0">
+                        <td colspan="2" align="center"><b>--- No Data ---</b></td>
+                    </tr>
                     <tr ng-repeat="ddd in allopencommissionList">
                         <td class="padd" ng-click="gotonextpage(ddd.commissionid)">{{ddd.lorryno}}</td>
                         <td class="padd">{{ddd.loadingdate}}</td>
@@ -31,6 +34,9 @@
                     <tr>
                         <th class="padd">Lorry No</th>
                         <th class="padd">Loading Date</th>
+                    </tr>
+                    <tr style="height:40px;" ng-if="balancereceiveddatecommitionList.length==0">
+                        <td colspan="2" align="center"><b>--- No Data ---</b></td>
                     </tr>
                     <tr ng-repeat="ddd in balancereceiveddatecommitionList">
                         <td class="padd" ng-click="gotonextpage(ddd.commissionid)">{{ddd.lorryno}}</td>
@@ -53,6 +59,9 @@
                         <th class="padd">Lorry No</th>
                         <th class="padd">Loading Date</th>
                     </tr>
+                    <tr style="height:40px;" ng-if="ackcommitionList.length==0">
+                        <td colspan="2" align="center"><b>--- No Data ---</b></td>
+                    </tr>
                     <tr ng-repeat="ddd in ackcommitionList">
                         <td class="padd" ng-click="gotonextpage(ddd.commissionid)">{{ddd.lorryno}}</td>
                         <td class="padd">{{ddd.loadingdate}}</td>
@@ -70,6 +79,9 @@
                     <tr>
                         <th class="padd">Lorry No</th>
                         <th class="padd">Loading Date</th>
+                    </tr>
+                    <tr style="height:40px;" ng-if="balanceerrorcommitionList.length==0">
+                        <td colspan="2" align="center"><b>--- No Data ---</b></td>
                     </tr>
                     <tr ng-repeat="dd in balanceerrorcommitionList">
                         <td class="padd" ng-click="gotonextpage(dd.commissionid)">{{dd.lorryno}}</td>
