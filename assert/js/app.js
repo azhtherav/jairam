@@ -119,9 +119,7 @@ app.controller('appCtr', ['$scope', '$mdSidenav', '$location', function ($scope,
 
 app.controller('outflowCtl', ['$scope', 'getalllorry', 'addlorry', '$log', 'fileUpload', 'allService', '$filter', 'allgetService', 'datatable', function ($scope, getalllorry, addlorry, $log, fileUpload, allService, $filter, allgetService, datatable) {
 
-    var payload = [];
-
-    $scope.loader = true;
+    $scope.loader = false;
 
     var datatableConfig = {
         "name": "AdvancePayCommissionList",
@@ -219,8 +217,24 @@ app.controller('outflowCtl', ['$scope', 'getalllorry', 'addlorry', '$log', 'file
         }
     };
 
-    $scope.datatable = datatable(datatableConfig);
-    $scope.datatable.setData(payload);
+    $scope.getoutflowlist = function () {
+        var promise =
+            allgetService.getAllService(domain + "/api/Commission/getoutflowcommission");
+        promise.then(
+           function (payload) {
+               //$scope.commitionList = payload;
+               $scope.datatable = datatable(datatableConfig);
+               $scope.datatable.setData(payload);
+               $scope.loader = true;
+           },
+           function (errorPayload) {
+               $log.error('failure loading movie', errorPayload);
+               alert('error get commission');
+               $scope.loader = true;
+           });
+    };
+
+    $scope.getoutflowlist();
     
 
 }]);
@@ -228,9 +242,7 @@ app.controller('outflowCtl', ['$scope', 'getalllorry', 'addlorry', '$log', 'file
 app.controller('inflowCtl', ['$scope', 'getalllorry', 'addlorry', '$log', 'fileUpload', 'allService', '$filter', 'allgetService', 'datatable', function ($scope, getalllorry, addlorry, $log, fileUpload, allService, $filter, allgetService, datatable) {
 
 
-    $scope.loader = true;
-
-    var payload = [];
+    $scope.loader = false;
 
     var datatableConfig = {
         "name": "AdvancePayCommissionList",
@@ -328,8 +340,24 @@ app.controller('inflowCtl', ['$scope', 'getalllorry', 'addlorry', '$log', 'fileU
         }
     };
 
-    $scope.datatable = datatable(datatableConfig);
-    $scope.datatable.setData(payload);
+    $scope.getinflowlist = function () {
+        var promise =
+            allgetService.getAllService(domain + "/api/Commission/getinflowcommission");
+        promise.then(
+           function (payload) {
+               //$scope.commitionList = payload;
+               $scope.datatable = datatable(datatableConfig);
+               $scope.datatable.setData(payload);
+               $scope.loader = true;
+           },
+           function (errorPayload) {
+               $log.error('failure loading movie', errorPayload);
+               alert('error get commission');
+               $scope.loader = true;
+           });
+    };
+
+    $scope.getinflowlist();
 
 
 }]);
@@ -522,18 +550,18 @@ app.controller('dashboardCtl', ['$scope', '$location', 'getalllorry', 'addlorry'
 
     $scope.loader = false;
 
-    $scope.getallopencommissionList = function () {
+    $scope.getbalancecommissionList = function () {
         var promise =
-            allgetService.getAllService(domain + "/api/Commission/getallopencommission");
+            allgetService.getAllService(domain + "/api/Commission/getcommissionbalance");
         promise.then(
            function (payload) {
-               $scope.allopencommissionList = payload;
+               $scope.balancecommissionList = payload;
                //console.log(payload);
                $scope.loader = true;
            },
            function (errorPayload) {
                $log.error('failure loading movie', errorPayload);
-               alert('error get all open commission');
+               alert('error get balance commission');
                $scope.loader = true;
            });
     };
@@ -541,7 +569,7 @@ app.controller('dashboardCtl', ['$scope', '$location', 'getalllorry', 'addlorry'
     $scope.getackcommitionList();
     $scope.getbalanceerrorcommitionList();
     $scope.getbalancereceiveddatecommissionList();
-    $scope.getallopencommissionList();
+    $scope.getbalancecommissionList();
 
     $scope.gotonextpage = function (param) {
         var x = '/commissiondetail/' + param
