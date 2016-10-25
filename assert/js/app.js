@@ -117,7 +117,7 @@ app.controller('appCtr', ['$scope', '$mdSidenav', '$location', function ($scope,
 
 
 
-app.controller('outflowCtl', ['$scope', 'getalllorry', 'addlorry', '$log', 'fileUpload', 'allService', '$filter', 'allgetService', 'datatable', function ($scope, getalllorry, addlorry, $log, fileUpload, allService, $filter, allgetService, datatable) {
+app.controller('outflowCtl', ['$scope', '$location', 'getalllorry', 'addlorry', '$log', 'fileUpload', 'allService', '$filter', 'allgetService', 'datatable', function ($scope, $location, getalllorry, addlorry, $log, fileUpload, allService, $filter, allgetService, datatable) {
 
     $scope.loader = false;
 
@@ -127,6 +127,7 @@ app.controller('outflowCtl', ['$scope', 'getalllorry', 'addlorry', '$log', 'file
             {
                 "header": "ID",
                 "property": "commissionid",
+                "render": "<a ng-click='gotonextpage(cellValue)'>{{cellValue}}</a>",
                 "order": true,
                 "type": "text"
             },
@@ -142,30 +143,6 @@ app.controller('outflowCtl', ['$scope', 'getalllorry', 'addlorry', '$log', 'file
                 "order": true,
                 "type": "text"
             },
-            //{
-            //    "header": "Name Board",
-            //    "property": "nameboard",
-            //    "order": true,
-            //    "type": "text"
-            //},
-            {
-                "header": "Name Board",
-                "property": "paymentmode",
-                "order": true,
-                "type": "text"
-            },
-            {
-                "header": "Lorry Contact",
-                "property": "ophone",
-                "order": true,
-                "type": "text"
-            },
-            {
-                "header": "Trans. Number",
-                "property": "transporterphone",
-                "order": true,
-                "type": "text"
-            },
             {
                 "header": "Loading Date",
                 "property": "loadingdate",
@@ -173,17 +150,24 @@ app.controller('outflowCtl', ['$scope', 'getalllorry', 'addlorry', '$log', 'file
                 "type": "text"
             },
             {
-                "header": "From",
-                "property": "lfrom",
+                "header": "ACK Date",
+                "property": "ackdate",
                 "order": true,
                 "type": "text"
             },
             {
-                "header": "To",
-                "property": "lto",
+                "header": "Amt Received Date",
+                "property": "balancereceiveddate",
+                "order": true,
+                "type": "text"
+            },
+            {
+                "header": "Amt",
+                "property": "grandtotal",
                 "order": true,
                 "type": "text"
             }
+
             
         ],
         "filter": {
@@ -235,11 +219,16 @@ app.controller('outflowCtl', ['$scope', 'getalllorry', 'addlorry', '$log', 'file
     };
 
     $scope.getoutflowlist();
+
+    $scope.gotonextpage = function (param) {
+        var x = '/commissiondetail/' + param
+        $location.path(x);
+    };
     
 
 }]);
 
-app.controller('inflowCtl', ['$scope', 'getalllorry', 'addlorry', '$log', 'fileUpload', 'allService', '$filter', 'allgetService', 'datatable', function ($scope, getalllorry, addlorry, $log, fileUpload, allService, $filter, allgetService, datatable) {
+app.controller('inflowCtl', ['$scope', '$location', 'getalllorry', 'addlorry', '$log', 'fileUpload', 'allService', '$filter', 'allgetService', 'datatable', function ($scope, $location, getalllorry, addlorry, $log, fileUpload, allService, $filter, allgetService, datatable) {
 
 
     $scope.loader = false;
@@ -250,6 +239,7 @@ app.controller('inflowCtl', ['$scope', 'getalllorry', 'addlorry', '$log', 'fileU
             {
                 "header": "ID",
                 "property": "commissionid",
+                "render": "<a ng-click='gotonextpage(cellValue)'>{{cellValue}}</a>",
                 "order": true,
                 "type": "text"
             },
@@ -265,30 +255,6 @@ app.controller('inflowCtl', ['$scope', 'getalllorry', 'addlorry', '$log', 'fileU
                 "order": true,
                 "type": "text"
             },
-            //{
-            //    "header": "Name Board",
-            //    "property": "nameboard",
-            //    "order": true,
-            //    "type": "text"
-            //},
-            {
-                "header": "Name Board",
-                "property": "paymentmode",
-                "order": true,
-                "type": "text"
-            },
-            {
-                "header": "Lorry Contact",
-                "property": "ophone",
-                "order": true,
-                "type": "text"
-            },
-            {
-                "header": "Trans. Number",
-                "property": "transporterphone",
-                "order": true,
-                "type": "text"
-            },
             {
                 "header": "Loading Date",
                 "property": "loadingdate",
@@ -296,14 +262,14 @@ app.controller('inflowCtl', ['$scope', 'getalllorry', 'addlorry', '$log', 'fileU
                 "type": "text"
             },
             {
-                "header": "From",
-                "property": "lfrom",
+                "header": "ACK Date",
+                "property": "ackdate",
                 "order": true,
                 "type": "text"
             },
             {
-                "header": "To",
-                "property": "lto",
+                "header": "Amt",
+                "property": "amountreceived",
                 "order": true,
                 "type": "text"
             }
@@ -358,6 +324,11 @@ app.controller('inflowCtl', ['$scope', 'getalllorry', 'addlorry', '$log', 'fileU
     };
 
     $scope.getinflowlist();
+
+    $scope.gotonextpage = function (param) {
+        var x = '/commissiondetail/' + param
+        $location.path(x);
+    };
 
 
 }]);
